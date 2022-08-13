@@ -1,0 +1,1 @@
+# amt-detox-react-native
