@@ -6,20 +6,26 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "e2e:test": "detox test -c ios.release",
+    "e2e:build": "detox build -c ios.release",
     "test": "jest",
     "lint": "eslint ."
   },
   "dependencies": {
+    "randomcolor": "^0.6.2",
     "react": "18.0.0",
-    "react-native": "0.69.4"
+    "react-native": "0.69.4",
+    "react-swipeable-views-native": "^0.13.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^26.6.3",
+    "detox": "^19.9.1",
     "eslint": "^7.32.0",
     "jest": "^26.6.3",
+    "jest-circus": "27.5.1",
     "metro-react-native-babel-preset": "^0.70.3",
     "react-test-renderer": "18.0.0"
   },
