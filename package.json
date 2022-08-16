@@ -10,6 +10,8 @@
     "e2e:build": "detox build -c ios.release",
     "cucumber": "./node_modules/.bin/cucumber-js --publish --require-module @babel/register ./cucumber/*.feature",
     "test": "jest",
+    "detox:testIosDebug": "DETOX_PLATFORM=ios DETOX_BUILD_FLAVOR=debug cucumber-js",
+    "detox:testIosRelease": "DETOX_PLATFORM=ios DETOX_BUILD_FLAVOR=release cucumber-js",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -29,6 +31,7 @@
     "detox": "^19.9.1",
     "eslint": "^7.32.0",
     "jest": "^26.6.3",
+    "ts-node": "^9.0.0",
     "jest-circus": "27.5.1",
     "metro-react-native-babel-preset": "^0.70.3",
     "react-test-renderer": "18.0.0"
