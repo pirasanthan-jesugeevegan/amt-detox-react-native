@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,30 +11,48 @@ import {
 } from 'react-native';
 import {
   Header,
-  LearnMoreLinks,
   Colors,
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import randomColor from 'randomcolor';
 import SwipeableViews from 'react-swipeable-views-native';
-const Slide = ({children}) => (
+import FestivalCard from './components/FestivalCard';
+import { fetchAllFestival } from './service/getAllFestival';
+
+const Slide = ({ children }) => (
   <View
     style={[
       styles.slide,
-      {backgroundColor: randomColor({luminosity: 'light'})},
-    ]}>
+      { backgroundColor: randomColor({ luminosity: 'light' }) },
+    ]}
+  >
     {children}
   </View>
 );
 const App = () => {
+  const [festivals, setFestivals] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    try {
+      setIsLoading(true);
+      fetchAllFestival().then((response) => {
+        setFestivals(response.results);
+        setIsLoading(false);
+      });
+    } catch (error) {
+      console.log('Data fetching cancelled');
+    }
+  }, []);
   return (
     <Fragment>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
+          style={styles.scrollView}
+        >
           <Header />
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
@@ -68,12 +86,18 @@ const App = () => {
                 <TextInput
                   testID="docsInput"
                   multiline
-                  style={styles.sectionDescription}>
+                  style={styles.sectionDescription}
+                >
                   Read the docs to discover what to do next:
                 </TextInput>
               </Slide>
             </SwipeableViews>
-            <LearnMoreLinks />
+            {isLoading && <Text> Loading </Text>}
+            {!isLoading &&
+              festivals &&
+              festivals.map((festival) => {
+                return <FestivalCard props={festival} />;
+              })}
           </View>
         </ScrollView>
       </SafeAreaView>

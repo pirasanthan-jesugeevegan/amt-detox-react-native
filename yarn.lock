@@ -6308,7 +6308,7 @@ prompts@^2.0.1, prompts@^2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.8.1:
+prop-types@^15.5.10, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -6401,6 +6401,13 @@ react-native-gradle-plugin@^0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.7.tgz#96602f909745239deab7b589443f14fce5da2056"
   integrity sha512-+4JpbIx42zGTONhBTIXSyfyHICHC29VTvhkkoUOJAh/XHPEixpuBduYgf6Y4y9wsN1ARlQhBBoptTvXvAFQf5g==
+
+react-native-material-cards@^1.0.16:
+  version "1.0.16"
+  resolved "https://registry.yarnpkg.com/react-native-material-cards/-/react-native-material-cards-1.0.16.tgz#2099e20b486074f93dec510237b947172aa9f5b0"
+  integrity sha512-5jF4r1UH532U0mNOznhVIaqPkupKZkU8pck4ujBI7ccoXlbYyN4wOp0u4Pzxyvsh34FZXgcwd2lkoxyqbNrBrw==
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native@0.69.4:
   version "0.69.4"
