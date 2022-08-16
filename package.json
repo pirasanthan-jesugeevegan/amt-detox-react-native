@@ -8,11 +8,12 @@
     "start": "react-native start",
     "e2e:test": "detox test -c ios.release",
     "e2e:build": "detox build -c ios.release",
-    "cucumber": "./node_modules/.bin/cucumber-js --require-module @babel/register ./cucumber/*.feature",
+    "cucumber": "./node_modules/.bin/cucumber-js --publish --require-module @babel/register ./cucumber/*.feature",
     "test": "jest",
     "lint": "eslint ."
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "randomcolor": "^0.6.2",
     "react": "18.0.0",
     "react-native": "0.69.4",
