@@ -7,43 +7,44 @@ jobs:
     runs-on: macos-latest
     timeout-minutes: 15
 
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_11.2.app
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
+    - name: Checkout
+      uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
 
-      - name: Node
-        uses: actions/setup-node@v1
+    - name: Node
+      uses: actions/setup-node@v1
 
-      - name: Cache node modules
-        uses: actions/cache@v1
-        id: cache
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('**/yarn.lock') }}
+    - name: Cache node modules
+      uses: actions/cache@v1
+      id: cache
+      with:
+        path: node_modules
+        key: node-modules-${{ hashFiles('**/yarn.lock') }}
 
-      - name: Rebuild detox
-        if: steps.cache.outputs.cache-hit == 'true'
-        run: yarn detox clean-framework-cache && yarn detox build-framework-cache
+    - name: Rebuild detox
+      if: steps.cache.outputs.cache-hit == 'true'
+      run: yarn detox clean-framework-cache && yarn detox build-framework-cache
 
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install --ignore-engines
+    - name: Install Dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: yarn install
 
-      - name: Restore Pods cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            ios/Pods
-            ~/Library/Caches/CocoaPods
-            ~/.cocoapods
-          key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
+    - name: Cache Pods
+      uses: actions/cache@v1
+      id: podcache
+      with:
+        path: ios/Pods
+        key: pods-${{ hashFiles('**/Podfile.lock') }}
 
-      - name: Install Pods
-        run: cd ios && pod install --repo-update && cd ..
+    - name: Update Pods
+      run: |
+        gem update cocoapods xcodeproj
+        cd ios && pod install && cd ..
 
       - run: brew tap wix/brew
       - run: brew install applesimutils
