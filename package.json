@@ -10,6 +10,8 @@
     "e2e:build": "detox build -c ios.release",
     "cucumber": "./node_modules/.bin/cucumber-js --publish --require-module @babel/register ./cucumber/*.feature",
     "test": "jest",
+    "detox:buildIosDebug": "DETOX_PLATFORM=ios DETOX_BUILD_FLAVOR=debug detox build",
+    "detox:buildIosRelease": "DETOX_PLATFORM=ios DETOX_BUILD_FLAVOR=release detox build",
     "detox:testIosDebug": "DETOX_PLATFORM=ios DETOX_BUILD_FLAVOR=debug cucumber-js",
     "detox:testIosRelease": "DETOX_PLATFORM=ios DETOX_BUILD_FLAVOR=release cucumber-js",
     "lint": "eslint ."

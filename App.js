@@ -96,7 +96,7 @@ const App = () => {
             {!isLoading &&
               festivals &&
               festivals.map((festival) => {
-                return <FestivalCard props={festival} />;
+                return <FestivalCard testID="card" props={festival} />;
               })}
           </View>
         </ScrollView>
